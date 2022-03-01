@@ -1,5 +1,5 @@
 {
-  "name": "JATE",
+  "name": "Werd-to-the-Words",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,14 +12,29 @@
     "client": ""
   },
   "keywords": [],
-  "author": "",
+  "author": "Leland Byrd",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "idb": "^7.0.0",
     "if-env": "^1.0.4"
   },
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4"
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/runtime": "^7.17.2",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^5.3.0",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.0",
+    "nodemon": "^2.0.4",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-pwa-manifest": "^4.3.0",
+    "workbox-webpack-plugin": "^6.5.0"
   }
 }
