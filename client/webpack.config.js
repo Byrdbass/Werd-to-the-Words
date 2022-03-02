@@ -39,19 +39,8 @@ module.exports = () => {
           }
         ]
       }),
-      new WorkboxPlugin.GenerateSW({
-        exclude: [],
-        runtimeCaching: [{
-          urlPattern: ,
-          handler: ,
-          options: {
-            cacheName: ,
-            expiration {
-              maxEntries: 
-            },
-          },
-        }],
-      })
+      new MiniCssExtractPlugin(),
+      new WorkboxPlugin.GenerateSW()
     ],
 
     module: {

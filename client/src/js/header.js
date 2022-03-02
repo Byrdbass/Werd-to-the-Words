@@ -10,3 +10,11 @@ just another text editor
 `;
 
 export { header };
+`
+___   __   ___                
+| |   /\   | |
+| |  /  \  |
+| | / /\ \ |
+| |/ /  \ \|
+| / /    \ \
+`
