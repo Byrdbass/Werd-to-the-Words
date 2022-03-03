@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
-const WorkboxPlugin = require('workbox-webpack-plugin')
+//const WorkboxPlugin = require('workbox-webpack-plugin')
 const { InjectManifest } = require('workbox-webpack-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
@@ -13,6 +13,7 @@ module.exports = () => {
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
+      //do we need another entry file? maybe editor?
     },
     output: {
       filename: '[name].bundle.js',
@@ -23,9 +24,16 @@ module.exports = () => {
         template: './index.html',
         title: "Werd-to-the-Words"
       }),
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js"
+      }),
       new WebpackPwaManifest({
-        filename: 'manifest.json',
+//        filename: 'manifest.json',
+// comment out fingerprints??
+        fingerprints: false,
         name: 'Werd-to-the-Words',
+        inject: true,
         short_name: 'W2theWords',
         description: 'A simple text editor!',
         background_color: '#00ccff',
@@ -33,19 +41,35 @@ module.exports = () => {
         publicPath: '/',
         icons: [
           {
-            src: path.resolve('./src/images/byrdistheword.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons')
           }
+
         ]
       }),
-      new MiniCssExtractPlugin(),
-      new WorkboxPlugin.GenerateSW()
+  
+      // new MiniCssExtractPlugin(),
+      //new WorkboxPlugin.GenerateSW()
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_module/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            }
+          }
+        }
       ],
     },
   };
